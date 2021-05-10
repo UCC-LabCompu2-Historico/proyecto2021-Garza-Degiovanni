@@ -11,17 +11,23 @@
 </head>
 
 <style>
-    body{
+    body {
         background: linear-gradient(to left, #b855bb, #efc);
     }
-    .titulo{
+    .estilo-borde{
+        2px solid #0022ff;
+    }
+
+    .titulo {
         text-align: center;
     }
-    .columna1{
+
+    .columna1 {
         float: left;
         width: 50%;
     }
-    .columna2{
+
+    .columna2 {
         float: right;
         width: 50%;
     }
@@ -32,7 +38,8 @@
 </header>
 
 <div>
-    <p class="titulo">El MRU es una forma de desplazamiento con <b><u>velocidad constante</u></b>. Este se realiza sobre una linea recta</p>
+    <p class="titulo">El MRU es una forma de desplazamiento con <b><u>velocidad constante</u></b>. Este se realiza sobre
+        una linea recta</p>
 </div>
 <div>
     <p>Ingrese la cantidad de moviles que tiene su problema</p>
@@ -68,34 +75,35 @@
     </p>
 </div>
 <div class="columna2">
-        <h2>Segundo movil</h2>
-        <h4>Solo rellene los dos datos que tenga y averiguaremos el restante.</h4>
-        <p>Velocidad
-            <input type="number" name="velocidad">
-            <select name="unidad de medida">
-                <option value="m/s">metros/segundos</option>
-                <option value="km/hs">kilometro/horas</option>
-            </select>
-        </p>
-        <p>Distancia
-            <input type="number" name="distancia">
-            <select name="unidad de medida">
-                <option value="m">metros</option>
-                <option value="km">kilometros</option>
-            </select>
-        </p>
-        <p>Tiempo
-            <input type="number" name="tiempo">
-            <select name="unidad de medida">
-                <option value="h">horas</option>
-                <option value="m">minutos</option>
-                <option value="s">segundos</option>
-            </select>
+    <h2>Segundo movil</h2>
+    <h4>Solo rellene los dos datos que tenga y averiguaremos el restante.</h4>
+    <p>Velocidad
+        <input type="number" name="velocidad">
+        <select name="unidad de medida">
+            <option value="m/s">metros/segundos</option>
+            <option value="km/hs">kilometro/horas</option>
+        </select>
+    </p>
+    <p>Distancia
+        <input type="number" name="distancia">
+        <select name="unidad de medida">
+            <option value="m">metros</option>
+            <option value="km">kilometros</option>
+        </select>
+    </p>
+    <p>Tiempo
+        <input type="number" name="tiempo">
+        <select name="unidad de medida">
+            <option value="h">horas</option>
+            <option value="m">minutos</option>
+            <option value="s">segundos</option>
+        </select>
     </p>
 </div>
-<div>
-    <img src="img"
+<div class="estilo-borde">
+    <canvas></canvas>
+    <img src="imagen/automru.jpg" alt="auto desplazandose">
 </div>
-<footer>Para mas informacion teorica sobre Movimiento Rectilineo Uniforme, viste la pagina: </footer>
+<footer>Para mas informacion teorica sobre Movimiento Rectilineo Uniforme, viste la pagina:</footer>
 </body>
 </html>
