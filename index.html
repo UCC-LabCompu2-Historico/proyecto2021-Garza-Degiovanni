@@ -7,103 +7,129 @@
     <meta content="Leandro Garza - Juan Degiovanni" name="autor">
     <meta content="web para resolver problemas de mru" name="descripcion">
     <meta content="movimiento rectilineo unifore, fisica, ejercicios, resolver" name="palabras-principales">
-    <link rel="stylesheet" href="estyle.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
-<style>
-    body {
-        background: linear-gradient(to left, #b855bb, #efc);
-    }
-    .estilo-borde{
-        2px solid #0022ff;
-    }
-
-    .titulo {
-        text-align: center;
-    }
-
-    .columna1 {
-        float: left;
-        width: 50%;
-    }
-
-    .columna2 {
-        float: right;
-        width: 50%;
-    }
-</style>
 <body>
 <header>
     <h1 class="titulo">Movimiento Rectilineo Uniforme</h1>
 </header>
 
-<div>
-    <p class="titulo">El MRU es una forma de desplazamiento con <b><u>velocidad constante</u></b>. Este se realiza sobre
+
+<div class="subtitulo">
+    <p>El MRU es una forma de desplazamiento con <b><u>velocidad constante</u></b>. Este se realiza sobre
         una linea recta</p>
 </div>
-<div>
-    <p>Ingrese la cantidad de moviles que tiene su problema</p>
-    <select name="Cantidad">
-        <option value="1movil">1</option>
+
+
+<div id="empezar">
+    Empezar
+</div>
+
+
+<div class="oculto moviles">
+    <label for="cantidad">Ingrese la cantidad de moviles que tiene su problema</label>
+    <select name="Cantidad" id="cantidad">
+        <option value="1movil" selected>1</option>
         <option value="2movil">2</option>
     </select>
 </div>
-<div class="columna1">
+
+<hr class="oculto">
+
+<div class="oculto columna1">
+
     <h2>Primer movil</h2>
     <h4>Solo rellene los dos datos que tenga y averiguaremos el restante.</h4>
-    <p>Velocidad
-        <input type="number" name="velocidad">
+
+
+    <div>
+        <label for="v1">Velocidad</label>
+        <input type="number" name="velocidad" id="v1">
+        <!-- No hay label aproposito, el label seria el <input> -->
         <select name="unidad de medida">
             <option value="m/s">metros/segundos</option>
             <option value="km/hs">kilometro/horas</option>
         </select>
-    </p>
-    <p>Distancia
-        <input type="number" name="distancia">
+    </div>
+
+
+    <div>
+        <label for="x1">Distancia</label>
+        <input type="number" name="distancia" id="x1">
         <select name="unidad de medida">
             <option value="m">metros</option>
             <option value="km">kilometros</option>
         </select>
-    </p>
-    <p>Tiempo
-        <input type="number" name="tiempo">
+    </div>
+
+
+    <div>
+        <label for="t1">Tiempo</label>
+        <input type="number" name="tiempo" id="t1">
         <select name="unidad de medida">
             <option value="h">horas</option>
             <option value="m">minutos</option>
             <option value="s">segundos</option>
         </select>
-    </p>
+    </div>
 </div>
-<div class="columna2">
+
+<div class="columna2 columna2-oculto">
+
     <h2>Segundo movil</h2>
     <h4>Solo rellene los dos datos que tenga y averiguaremos el restante.</h4>
-    <p>Velocidad
-        <input type="number" name="velocidad">
+
+
+    <div>
+        <label for="v2">Velocidad</label>
+        <input type="number" name="velocidad" id="v2">
         <select name="unidad de medida">
             <option value="m/s">metros/segundos</option>
             <option value="km/hs">kilometro/horas</option>
         </select>
-    </p>
-    <p>Distancia
-        <input type="number" name="distancia">
+    </div>
+    
+    <div>
+        <label for="x2">Distancia</label>
+        <input type="number" name="distancia" id="x2">
         <select name="unidad de medida">
             <option value="m">metros</option>
             <option value="km">kilometros</option>
         </select>
-    </p>
-    <p>Tiempo
-        <input type="number" name="tiempo">
+    </div>
+    
+    <div>
+        <label for="t2">Tiempo</label>
+        <input type="number" name="tiempo" id="t2">
         <select name="unidad de medida">
             <option value="h">horas</option>
             <option value="m">minutos</option>
             <option value="s">segundos</option>
         </select>
-    </p>
+    </div>
+    
 </div>
-<div class="estilo-borde">
-    <canvas></canvas>
-    <img src="imagen/automru.jpg" alt="auto desplazandose">
+
+
+<div class="area-de-trabajo">
+
+    <div class="oculto btn-pequeno" id="calcular">
+        Calcular
+    </div>
+
+    <div class="oculto image">
+        <img src="imagen/automru.jpg" alt="auto desplazandose">
+    </div>
+
+    <div class="oculto grafico">
+        <canvas></canvas>
+    </div>
+
 </div>
+
 <footer>Para mas informacion teorica sobre Movimiento Rectilineo Uniforme, viste la pagina:</footer>
+<script src="scripts/main.js"></script>
 </body>
 </html>
+
