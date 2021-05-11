@@ -14,6 +14,8 @@ Interfaz para poder calcular problemas de Movimiento Rectilineo Uniforme (M.R.U)
 # Palabras Clave
 movimiento rectilineo uniforme, fisica, ejercicios, resolver
 
+# [Link a la pagina](https://ucc-labcompu2.github.io/proyecto2021-Garza-Degiovanni/)
+
 ### Requisitos del Primer Parcial
 - [x] El proyecto debe estar subido al repositorio adecuado "Proyecto2021-ApellidoAlumno1-ApellidoAlumno2"
 - [x] La página principal debe llamarse index
