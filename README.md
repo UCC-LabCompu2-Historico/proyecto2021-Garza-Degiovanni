@@ -1,18 +1,21 @@
 # proyecto2021
 Estructura de Proyecto Lab de Compu II - 2021
 
-# Titulo
+# [Link a la pagina](https://ucc-labcompu2.github.io/proyecto2021-Garza-Degiovanni/)
+
+## Titulo
 Web para M.R.U
 
-# Autores
+## Autores
 Juan Ignacio Degiovanni
 Leandro Garza
 
-# Descripcion
+## Descripcion
 Interfaz para poder calcular problemas de Movimiento Rectilineo Uniforme (M.R.U), proveyendo un grafico (TODO) y los valores necesarios.
 
-# Palabras Clave
+## Palabras Clave
 movimiento rectilineo uniforme, fisica, ejercicios, resolver
+
 
 ### Requisitos del Primer Parcial
 - [x] El proyecto debe estar subido al repositorio adecuado "Proyecto2021-ApellidoAlumno1-ApellidoAlumno2"
