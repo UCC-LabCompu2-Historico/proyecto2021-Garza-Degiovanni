@@ -107,3 +107,12 @@ footer {
     margin: auto;
     display: grid;
 }
+
+.grafico{
+    text-align: center;
+}
+
+#tv{
+    width: 700px;
+    height: 400px;
+}
