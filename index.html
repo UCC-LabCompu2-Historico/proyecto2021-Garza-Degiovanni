@@ -47,9 +47,9 @@
         <label for="v1">Velocidad</label>
         <input type="number" name="velocidad" id="v1">
         <!-- No hay label aproposito, el label seria el <input> -->
-        <select name="unidad de medida">
-            <option value="m/s">metros/segundos</option>
+        <select name="unidad de medida" id="units-v1">
             <option value="km/hs">kilometro/horas</option>
+            <option value="m/s">metros/segundos</option>
         </select>
     </div>
 
@@ -57,9 +57,9 @@
     <div>
         <label for="x1">Distancia</label>
         <input type="number" name="distancia" id="x1">
-        <select name="unidad de medida">
-            <option value="m">metros</option>
+        <select name="unidad de medida" id="units-x1">
             <option value="km">kilometros</option>
+            <option value="m">metros</option>
         </select>
     </div>
 
@@ -67,9 +67,8 @@
     <div>
         <label for="t1">Tiempo</label>
         <input type="number" name="tiempo" id="t1">
-        <select name="unidad de medida">
+        <select name="unidad de medida" id="units-t1">
             <option value="h">horas</option>
-            <option value="m">minutos</option>
             <option value="s">segundos</option>
         </select>
     </div>
@@ -84,27 +83,26 @@
     <div>
         <label for="v2">Velocidad</label>
         <input type="number" name="velocidad" id="v2">
-        <select name="unidad de medida">
-            <option value="m/s">metros/segundos</option>
+        <select name="unidad de medida" id="units-v2">
             <option value="km/hs">kilometro/horas</option>
+            <option value="m/s">metros/segundos</option>
         </select>
     </div>
     
     <div>
         <label for="x2">Distancia</label>
         <input type="number" name="distancia" id="x2">
-        <select name="unidad de medida">
-            <option value="m">metros</option>
+        <select name="unidad de medida" id="units-x2">
             <option value="km">kilometros</option>
+            <option value="m">metros</option>
         </select>
     </div>
     
     <div>
         <label for="t2">Tiempo</label>
         <input type="number" name="tiempo" id="t2">
-        <select name="unidad de medida">
+        <select name="unidad de medida" id="units-t2">
             <option value="h">horas</option>
-            <option value="m">minutos</option>
             <option value="s">segundos</option>
         </select>
     </div>
@@ -118,12 +116,12 @@
         Calcular
     </div>
 
-    <div class="oculto image">
+    <div class="oculto image" id='automru'>
         <img src="imagen/automru.jpg" alt="auto desplazandose">
     </div>
 
     <div class="oculto grafico">
-        <canvas></canvas>
+        <canvas id='tv'></canvas>
     </div>
 
 </div>
