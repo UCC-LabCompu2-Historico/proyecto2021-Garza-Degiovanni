@@ -14,10 +14,11 @@ let boxVal = document.getElementById('cantidad').value;
 /**
  Descripción
  Nombre de la función
- Nombre del primer parámetro y que tipo es y que contiene
- Nombre del segundo parámetro y que tipo es y que contiene
+ Nombre del primer parámetro y (que tipo es) y que contiene
+ Nombre del segundo parámetro y (que tipo es) y que contiene
  Valor que retorna
  */
+
 function start(){
 	let elems = document.getElementsByClassName('oculto');
 
@@ -31,7 +32,6 @@ function start(){
 /**
  si seleccionamos 1 movil, los datos para el movil 2 se oculta, sino se muestra
  Nombre de la función: movil
- Valor que retorna: ninguno, se muestra para ingresr datos
  */
 
 function movil(){
@@ -47,11 +47,9 @@ function movil(){
 	}
 }
 /**
- calculamos el val
- Nombre de la función
- Nombre del primer parámetro y que tipo es y que contiene
- Nombre del segundo parámetro y que tipo es y que contiene
- Valor que retorna
+ calculamos el cambio de unidades
+ Nombre de la función: calcular
+ valor que retorna: muestra error en el caso que los haya ya sea para 1 o 2 moviles
  */
 
 function calcular(){
@@ -133,6 +131,14 @@ function calcular(){
 	drawGraph({x: 50, y: artist.height - 50}, (artist.width - 50), 30, Number(document.getElementById('t1').value), Number(document.getElementById('x1').value), Number(document.getElementById('t2').value), Number(document.getElementById('x2').value));
 }
 
+/**
+ Descripción: si dejamos el campo vacio mostrara error
+ Nombre de la función: variables
+ parametro a,b,c: (number) valor - el valor de la velocidad, distancia y tiempo
+ parametro d: (string) id - si es km/hs o m/s
+ parametro e: (string) id - vemos que problema se trata
+ Valor que retorna: correcto si se realiza la operacion matematica, o incorrecto si no da
+ */
 
 function variables(v,x,t, units, whichProblem){
 	//What's missing
@@ -197,14 +203,28 @@ function variables(v,x,t, units, whichProblem){
   return 'correct';
 }
 
+/**
+ Descripción: si los parametros llegan aca es porque necesitan pasarse de unidades. Cambiamos de km a m o de m a km
+ Nombre de la función: meterKilometerConverter
+ parametro a: (number) valor - el valor de km o de m ya que este ultimo entra por default
+ parametro b: (string) id - km ya que si es m entra como km por default
+ Valor que retorna: el valor en m o km segun se necesite
+ */
 
-// Converters
 function meterKilometerConverter(value, unit= 'km'){
 	if (unit == 'km'){
 		return value * 1000;
 	}
 	return value / 1000;
 }
+
+/**
+ Descripción: cambiamos de hs a seg o de seg a hs segun se necesite
+ Nombre de la función: hoursSecondsConverter
+ parametro a: (number) valor - el valor de horas o de segundos
+ parametro d: (string) id - entra como horas pero tambien pueden ser los segundos
+ Valor que retorna: el valor en hs o segundos segun se necesite
+ */
 
 function hoursSecondsConverter(value, unit= 'h'){
 	if (unit == 'h'){
