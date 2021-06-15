@@ -11,14 +11,6 @@ window.addEventListener('load', function(){
 
 let boxVal = document.getElementById('cantidad').value;
 
-/**
- Descripción
- Nombre de la función
- Nombre del primer parámetro y (que tipo es) y que contiene
- Nombre del segundo parámetro y (que tipo es) y que contiene
- Valor que retorna
- */
-
 function start(){
 	let elems = document.getElementsByClassName('oculto');
 
