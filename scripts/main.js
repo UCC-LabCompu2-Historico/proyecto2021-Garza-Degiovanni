@@ -11,6 +11,13 @@ window.addEventListener('load', function(){
 
 let boxVal = document.getElementById('cantidad').value;
 
+/**
+ Descripción
+ Nombre de la función
+ Nombre del primer parámetro y que tipo es y que contiene
+ Nombre del segundo parámetro y que tipo es y que contiene
+ Valor que retorna
+ */
 function start(){
 	let elems = document.getElementsByClassName('oculto');
 
@@ -21,6 +28,11 @@ function start(){
 	document.getElementById('empezar').classList.add('oculto');
 }
 
+/**
+ si seleccionamos 1 movil, los datos para el movil 2 se oculta, sino se muestra
+ Nombre de la función: movil
+ Valor que retorna: ninguno, se muestra para ingresr datos
+ */
 
 function movil(){
 
@@ -34,6 +46,13 @@ function movil(){
 		document.getElementsByClassName('columna2')[0].classList.remove('columna2-oculto');
 	}
 }
+/**
+ calculamos el val
+ Nombre de la función
+ Nombre del primer parámetro y que tipo es y que contiene
+ Nombre del segundo parámetro y que tipo es y que contiene
+ Valor que retorna
+ */
 
 function calcular(){
 
