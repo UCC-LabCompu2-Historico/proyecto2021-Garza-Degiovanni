@@ -201,9 +201,9 @@ function calcular(){
 /**
  Descripción: si dejamos el campo vacio mostrara error
  Nombre de la función: variables
- parametro a,b,c: (number) valor - el valor de la velocidad, distancia y tiempo
- parametro d: (string) id - si es km/hs o m/s
- parametro e: (string) id - vemos que problema se trata
+ parametro v,x,t: (number) valor - el valor de la velocidad, distancia y tiempo
+ parametro units: (string) id - si es km/hs o m/s
+ parametro whichProblem: (string) id - vemos que problema se trata
  Valor que retorna: correcto si se realiza la operacion matematica, o incorrecto si no da
  */
 
@@ -273,8 +273,8 @@ function variables(v,x,t, units, whichProblem){
 /**
  Descripción: si los parametros llegan aca es porque necesitan pasarse de unidades. Cambiamos de km a m o de m a km
  Nombre de la función: meterKilometerConverter
- parametro a: (number) valor - el valor de km o de m ya que este ultimo entra por default
- parametro b: (string) id - km ya que si es m entra como km por default
+ parametro value: (number) valor - el valor de km o de m ya que este ultimo entra por default
+ parametro km: (string) id - km ya que si es m entra como km por default
  Valor que retorna: el valor en m o km segun se necesite
  */
 
@@ -288,8 +288,8 @@ function meterKilometerConverter(value, unit = 'km'){
 /**
  Descripción: cambiamos de hs a seg o de seg a hs segun se necesite
  Nombre de la función: hoursSecondsConverter
- parametro a: (number) valor - el valor de horas o de segundos
- parametro d: (string) id - entra como horas pero tambien pueden ser los segundos
+ parametro value: (number) valor - el valor de horas o de segundos
+ parametro h: (string) id - entra como horas pero tambien pueden ser los segundos
  Valor que retorna: el valor en hs o segundos segun se necesite
  */
 
@@ -303,8 +303,8 @@ function hoursSecondsConverter(value, unit= 'h'){
 /**
  Descripción: cambiamos de m/s a km/hs o de km/hs a m/s segun se necesite
  Nombre de la función: mpsKphConverter
- parametro a: (number) valor - el valor de m/s o de km/hs
- parametro d: (string) id - unidad original
+ parametro value: (number) valor - el valor de m/s o de km/hs
+ parametro km/hs: (string) id - unidad original
  Valor que retorna: el valor opuesto al del id
  */
 
