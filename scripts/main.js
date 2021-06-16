@@ -489,7 +489,7 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 	drawText(
 		{x: artist.width - 125, y: y - 5},
 		'v1 = ' + Number(document.getElementById('v1').value).toFixed(2) + ' ' + document.getElementById('units-v1').value ,
-		15, '#000'
+		15, '#000077'
 	);
 
 	drawText({x: start.x - 30, y: (start.y / 5 - 10) * 6 + 5}, '0.0', 18, '#000000');
@@ -497,7 +497,7 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 	if (boxVal == '2movil'){
 		drawLine({x: start.x, y: start.y}, {x: (x2/xMax) * (x - start.x), y: (1 - (y2/yMax)) * bigBoyY + (y + 30)}, '#007700', 2);
 
-		drawText({x: artist.width - 125, y: y + 15}, 'v2 = ' + Number(document.getElementById('v2').value).toFixed(2) + ' ' + document.getElementById('units-v2').value , 15, '#000');
+		drawText({x: artist.width - 125, y: y + 15}, 'v2 = ' + Number(document.getElementById('v2').value).toFixed(2) + ' ' + document.getElementById('units-v2').value , 15, '#007700');
 
 	}
 }
