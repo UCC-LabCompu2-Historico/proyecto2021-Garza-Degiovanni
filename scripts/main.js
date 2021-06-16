@@ -1,16 +1,30 @@
+
+//On Window Load Stuff
 window.addEventListener('load', function(){
 	document.getElementById('empezar').addEventListener('click', start);
 	document.getElementById('cantidad').addEventListener('change', movil);
 	document.getElementById('calcular').addEventListener('click', calcular);
 
-
-
 	// Inicializando el menu al recargar la pagina
 	document.getElementById('cantidad').value = '1movil';
+
+	// TRANSLATE Get all unidad elements and attach switch function
+	let unidades = document.getElementsByClassName('unidad');
+	for(let i = 0; i < unidades.length; i++){
+		unidades[i].addEventListener('change', function(){
+			swap(unidades[i]);
+		})
+	}
 })
 
+//Global Variables
 let boxVal = document.getElementById('cantidad').value;
 
+/** TRANSLATE
+	Show Form Inputs
+	Nombre de la función: start
+	valor que retorna: undefined
+*/
 function start(){
 	let elems = document.getElementsByClassName('oculto');
 
@@ -27,7 +41,6 @@ function start(){
  */
 
 function movil(){
-
 	boxVal = document.getElementById('cantidad').value;
 
 	if (boxVal == '1movil'){
@@ -46,7 +59,7 @@ function movil(){
 
 function calcular(){
 
-	// Obtiene valores de inputs 
+	// Obtiene valores de inputs
 
 	let v1 = document.getElementById('v1').value;
 	let x1 = document.getElementById('x1').value;
@@ -117,10 +130,72 @@ function calcular(){
 
 	document.getElementById('automru').classList.add('oculto');
 
+	let modo = 'm/s';
+	if( document.getElementById('units-v1').value == 'km/hs' ||
+			document.getElementById('units-v2').value == 'km/hs'){
+				modo = 'km/hs';
+			}
+
+	let graphVar1 = {
+		t: null,
+		x: null
+	}
+
+	let graphVar2 = {
+		t: null,
+		x: null
+	}
+	// TRANSLATE Convert for graph
+	if(modo == 'km/hs'){
+		//line 1
+		graphVar1.t = Number(document.getElementById('t1').value);
+		if(document.getElementById('units-t1').value == 's'){
+			graphVar1.t = hoursSecondsConverter(document.getElementById('t1').value, 's')
+		}
+		graphVar1.x = Number(document.getElementById('x1').value);
+		if(document.getElementById('units-x1').value == 'm'){
+			graphVar1.x = meterKilometerConverter(document.getElementById('x1').value, 'm');
+		}
+
+		//line 2
+		graphVar2.t = Number(document.getElementById('t2').value);
+		if(document.getElementById('units-t2').value == 's'){
+			graphVar2.t = hoursSecondsConverter(document.getElementById('t2').value, 's')
+		}
+		graphVar2.x = Number(document.getElementById('x2').value);
+		if(document.getElementById('units-x2').value == 'm'){
+			graphVar2.x = meterKilometerConverter(document.getElementById('x2').value, 'm');
+		}
+	}else{
+		//line 1
+		graphVar1.t = Number(document.getElementById('t1').value);
+		if(document.getElementById('units-t1').value == 'h'){
+			graphVar1.t = hoursSecondsConverter(document.getElementById('t1').value, 'h')
+		}
+		graphVar1.x = Number(document.getElementById('x1').value);
+		if(document.getElementById('units-x1').value == 'km'){
+			graphVar1.x = meterKilometerConverter(document.getElementById('x1').value, 'km');
+		}
+
+		//line 2
+		graphVar2.t = Number(document.getElementById('t2').value);
+		if(document.getElementById('units-t2').value == 'h'){
+			graphVar2.t = hoursSecondsConverter(document.getElementById('t2').value, 'h')
+		}
+		graphVar2.x = Number(document.getElementById('x2').value);
+		if(document.getElementById('units-x2').value == 'km'){
+			graphVar2.x = meterKilometerConverter(document.getElementById('x2').value, 'km');
+		}
+	}
 
 	brush.clearRect(0, 0, artist.width, artist.height);
 	drawRectangle(0, 0, artist.width, artist.height, '#FFFFFF');
-	drawGraph({x: 50, y: artist.height - 50}, (artist.width - 50), 30, Number(document.getElementById('t1').value), Number(document.getElementById('x1').value), Number(document.getElementById('t2').value), Number(document.getElementById('x2').value));
+	drawGraph({x: 50, y: artist.height - 50}, (artist.width - 50), 30,
+		graphVar1.t,
+		graphVar1.x,
+		graphVar2.t,
+		graphVar2.x,
+		modo);
 }
 
 /**
@@ -149,8 +224,8 @@ function variables(v,x,t, units, whichProblem){
   }else{
     t = Number(t);
   }
-  // Checks what's null and what isn't
-  if( (!v && !x) ||  
+  // TRANSLATE Checks what's null and what isn't
+  if( (!v && !x) ||
       (!v && !t) ||
       (!x && !t)){
     	// Two or more variables are missing;
@@ -175,17 +250,17 @@ function variables(v,x,t, units, whichProblem){
     	x = v * t;
 
 		if (document.getElementById('units-x' + whichProblem).value == 'km'){
-    		x = meterKilometerConverter(v, 'm');
+    		x = meterKilometerConverter(x, 'm');
     	}
     	document.getElementById('x'+whichProblem).value = x;
   } else if(!t){
     	t = x / v;
 
 		if (document.getElementById('units-t' + whichProblem).value == 'h'){
-    		x = hoursSecondsConverter(v, 's');
+    		t = hoursSecondsConverter(t, 's');
     	}
     	document.getElementById('t'+whichProblem).value = t;
-  } 
+  }
   else {
   	if (v * t != x){
   		console.log('wrong!');
@@ -203,11 +278,11 @@ function variables(v,x,t, units, whichProblem){
  Valor que retorna: el valor en m o km segun se necesite
  */
 
-function meterKilometerConverter(value, unit= 'km'){
+function meterKilometerConverter(value, unit = 'km'){
 	if (unit == 'km'){
-		return value * 1000;
+		return Number(value) * 1000;
 	}
-	return value / 1000;
+	return Number(value) / 1000;
 }
 
 /**
@@ -220,21 +295,49 @@ function meterKilometerConverter(value, unit= 'km'){
 
 function hoursSecondsConverter(value, unit= 'h'){
 	if (unit == 'h'){
-		return value * 3600;
+		return Number(value) * 3600;
 	}
-	return value / 3600;
+	return Number(value) / 3600;
 }
 
 function mpsKphConverter(value, unit= 'km/hs'){
 	if (unit == 'km/hs'){
-		return value / 3.6;
+		return Number(value) / 3.6;
 	}
-	return value * 3.6;
+	return Number(value) * 3.6;
+}
+
+function swap(elem){
+	let elemNombre = elem.id.substr(6);
+	let elemUnidad = document.getElementById(elemNombre);
+
+	switch(elem.value){
+		case 'km/hs':
+			elemUnidad.value = mpsKphConverter(elemUnidad.value, 'm/s');
+			break;
+		case 'm/s':
+			elemUnidad.value = mpsKphConverter(elemUnidad.value, 'km/hs');
+			break;
+		case 'km':
+			elemUnidad.value = meterKilometerConverter(elemUnidad.value, 'm');
+			break;
+		case 'm':
+			elemUnidad.value = meterKilometerConverter(elemUnidad.value, 'km');
+			break;
+		case 'h':
+			elemUnidad.value = hoursSecondsConverter(elemUnidad.value, 's');
+			break;
+		case 's':
+			elemUnidad.value = hoursSecondsConverter(elemUnidad.value, 'h');
+			break;
+		default:
+			console.log('Problema en Swap');
+	}
 }
 
 
 
-// CANVAS STUFF :themffYay:
+// CANVAS STUFF TRANSLATE :themffYay:
 
 
 var artist = document.getElementById('tv');
@@ -268,16 +371,7 @@ function drawText(pos, text, fontSize, color){
 	brush.fillText(text, pos.x, pos.y);
 }
 
-function randColor(){
-    var colorNum = ['0','1',"2","3","4","5","6","7","8","9","A","B","C","D","E","F"];
-    var color = "#";
-    for(var i = 0; i < 6 ; i++){
-        color = color + colorNum[Math.floor(Math.random()*16)];
-    }
-    return color;
-  }
-
-function drawGraph(start, x, y, x1, y1, x2= 0, y2= 0){
+function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 
 	let xMax = (x1 > x2 ? x1 : x2);
 	let yMax = (y1 > y2 ? y1 : y2);
@@ -286,35 +380,61 @@ function drawGraph(start, x, y, x1, y1, x2= 0, y2= 0){
 	drawLine({x: start.x, y: start.y}, {x: x, y: start.y});
 	drawLine({x: start.x, y: start.y}, {x: start.x, y: y});
 
-
 	// Line 1
 	bigBoyY = start.y - (y + 30);
-	drawLine({x: start.x, y: start.y}, {x: (x1/xMax) * (x - start.x), y: (1 - (y1/yMax)) * bigBoyY + (y + 30)}, '#000077', 2);
+	drawLine({x: start.x, y: start.y},
+		{x: (x1/xMax) * (x - start.x), y: (1 - (y1/yMax)) * bigBoyY + (y + 30)}, '#000077', 2);
 
 	// Hashes and Cuts
 	for (let i = 1; i <= 5; i++){
-		
+
 		// x hashes
 		hash = (x / 5) - 10;
 		xVal = xMax / 5;
 		drawLine({x: hash * i, y: start.y + 7}, {x: hash * i, y: start.y - 7});
+		//dibujar tiempo
 		drawText({x: hash * i - 10, y: start.y + 25}, (xVal * i).toFixed(1), 15, '#000000');
 
 
 		// y hashes
 		hash = start.y / 5 - 10;
 		yVal = yMax / 5;
-		drawLine({x: start.x - 7, y: hash * i}, {x: start.x + 7, y: hash * i});;
+		drawLine({x: start.x - 7, y: hash * i}, {x: start.x + 7, y: hash * i});
+		//dibujar distancia
+
+		//TRANSLATE ERASE
+		//Find out if one of the units is Kilometers
+		//If it is convert any meters to Kilometers
+		//write thingies in km/hs and km and stuff
 		drawText({x: start.x - 40, y: hash * i + 5}, (yVal * (6 - i)).toFixed(1), 15, '#000000');
 
 	}
-	drawText({x: start.x - 30, y: y - 5}, 'Distance (' + document.getElementById('units-x1').value + ')', 15, '#000');
-	drawText({x: artist.width - 70, y: artist.height - y}, 'Time (' + document.getElementById('units-t1').value + ')', 15, '#000');
-	drawText({x: artist.width - 100, y: y - 5}, 'v1 = ' + (y1/x1).toFixed(1) + ' ' + document.getElementById('units-v1').value , 15, '#000');
+
+	drawText(
+		{x: start.x - 30, y: y - 5},
+		'Distance (' + document.getElementById('units-x1').value + ')',
+		15, '#000'
+	);
+
+	drawText(
+		{x: artist.width - 70, y: artist.height - y},
+		'Time (' + document.getElementById('units-t1').value + ')',
+		15, '#000'
+	);
+
+
+	drawText(
+		{x: artist.width - 125, y: y - 5},
+		'v1 = ' + Number(document.getElementById('v1').value).toFixed(2) + ' ' + document.getElementById('units-v1').value ,
+		15, '#000'
+	);
+
 	drawText({x: start.x - 30, y: (start.y / 5 - 10) * 6 + 5}, '0.0', 18, '#000000');
+
 	if (boxVal == '2movil'){
 		drawLine({x: start.x, y: start.y}, {x: (x2/xMax) * (x - start.x), y: (1 - (y2/yMax)) * bigBoyY + (y + 30)}, '#007700', 2);
-		drawText({x: artist.width - 100, y: y + 15}, 'v2 = ' + (y2/x2).toFixed(1) + ' ' + document.getElementById('units-v2').value , 15, '#000');
+
+		drawText({x: artist.width - 125, y: y + 15}, 'v2 = ' + Number(document.getElementById('v2').value).toFixed(2) + ' ' + document.getElementById('units-v2').value , 15, '#000');
 
 	}
 }
