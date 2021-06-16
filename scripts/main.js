@@ -300,12 +300,27 @@ function hoursSecondsConverter(value, unit= 'h'){
 	return Number(value) / 3600;
 }
 
+/**
+ Descripción: cambiamos de m/s a km/hs o de km/hs a m/s segun se necesite
+ Nombre de la función: mpsKphConverter
+ parametro a: (number) valor - el valor de m/s o de km/hs
+ parametro d: (string) id - unidad original
+ Valor que retorna: el valor opuesto al del id
+ */
+
 function mpsKphConverter(value, unit= 'km/hs'){
 	if (unit == 'km/hs'){
 		return Number(value) / 3.6;
 	}
 	return Number(value) * 3.6;
 }
+
+/**
+ Descripción: cambiamos el valor del input cuando se cambia la unidad
+ Nombre de la función: swap
+ parametro elem: (object) El elemento del select
+ Valor que retorna: undefined
+ */
 
 function swap(elem){
 	let elemNombre = elem.id.substr(6);
@@ -346,6 +361,18 @@ artist.height = 400;
 var brush = artist.getContext('2d');
 
 
+/**
+ Descripción: dibuja un rectangulo de canvas
+ Nombre de la función: drawRectangle
+ parametro x: (number) valor - el valor en pixeles de la posicion de inicio de x
+ parametro y: (number) valor - el valor en pixeles de la posicion de inicio de y
+ parametro width: (number) valor - el valor en pixeles del ancho
+ parametro height: (number) valor - el valor en pixeles de la altura
+ parametro color: (string) valor - string del color en hexadecimal 
+
+ Valor que retorna: undefined
+ */
+
 function drawRectangle(x, y, width, height, color){
 	brush.beginPath();
 	brush.rect(x, y, width, height);
@@ -354,6 +381,16 @@ function drawRectangle(x, y, width, height, color){
 	brush.fill();
 	brush.closePath();
 }
+
+/**
+ Descripción: dibuja una linea en el canvas
+ Nombre de la función: drawLine
+ parametro pos1: (dict) valor - diccionario con la posicion de inicio de la linea {x, y}
+ parametro pos2: (dict) valor - diccionario con la posicion final de la linea {x, y}
+ parametro color: (string) valor - string del color en hexadecimal
+ parametro lWidth: (number) valor - el valor en pixeles del ancho de la linea (default 2)
+ Valor que retorna: undefined
+ */
 
 function drawLine(pos1, pos2, color = '#000000', lWidth = 2){
 	brush.beginPath();
@@ -365,11 +402,37 @@ function drawLine(pos1, pos2, color = '#000000', lWidth = 2){
 	brush.closePath();
 }
 
+/**
+ Descripción: dibuja texto en el canvas
+ Nombre de la función: drawText
+ parametro pos: (dict) valor - diccionario con la posicion de inicio del texto {x, y}
+ parametro text: (string) valor - el texto a dibujar
+ parametro fontSize: (number) valor - el valor en pixeles del tamaño de la fuente
+ parametro color: (string) valor - el valor en pixeles del ancho de la linea (default 2)
+ 
+ Valor que retorna: undefined
+ */
+
 function drawText(pos, text, fontSize, color){
 	brush.font = fontSize + 'px Arial';
 	brush.fillStyle = color;
 	brush.fillText(text, pos.x, pos.y);
 }
+
+/**
+ Descripción: dibuja el grafico en el canvas
+ Nombre de la función: drawGraph
+ parametro start: (dict) valor - posicion de inicio de los ejes {x, y}
+ parametro x: (number) valor - largo del eje X
+ parametro y: (number) valor - largo del eje Y
+ parametro x1: (number) valor - valor del tiempo del movil 1
+ parametro y1: (number) valor - valor de la distancia del movil 1
+ parametro x2: (number) valor - valor del tiempo del movil 1
+ parametro y2: (number) valor - valor de la distancia del movil 1
+ parametro modo: (string) valor - el modo del grafico (m/s or km/hs)
+ 
+ Valor que retorna: undefined
+ */
 
 function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 
