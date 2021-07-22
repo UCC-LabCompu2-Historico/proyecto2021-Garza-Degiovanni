@@ -501,3 +501,10 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 
 	}
 }
+
+function limpiarCanvas(){
+	var canvas = document.getElementById("canvasAdibujar");
+	var ctx = canvas.getContext("2d");
+
+	canvas.width = canvas.width;
+}
