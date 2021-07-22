@@ -245,21 +245,21 @@ function variables(v,x,t, units, whichProblem){
     		v = mpsKphConverter(v, 'm/s');
     	}
 
-    	document.getElementById('v'+whichProblem).value = v;
+    	document.getElementById('v'+whichProblem).value = Math.round(v*100)/100;
   } else if (!x){
     	x = v * t;
 
 		if (document.getElementById('units-x' + whichProblem).value == 'km'){
     		x = meterKilometerConverter(x, 'm');
     	}
-    	document.getElementById('x'+whichProblem).value = x;
+    	document.getElementById('x'+whichProblem).value = Math.round(x*100)/100;
   } else if(!t){
     	t = x / v;
 
 		if (document.getElementById('units-t' + whichProblem).value == 'h'){
     		t = hoursSecondsConverter(t, 's');
     	}
-    	document.getElementById('t'+whichProblem).value = t;
+    	document.getElementById('t'+whichProblem).value = Math.round(t*100)/100;
   }
   else {
   	if (v * t != x){
@@ -502,8 +502,14 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 	}
 }
 
+/**
+ Descripción: borra el grafico en el canvas
+ Nombre de la función: limpiarCanvas
+ Valor que retorna: undefined
+ */
+
 function limpiarCanvas(){
-	var canvas = document.getElementById("canvasAdibujar");
+	var canvas = document.getElementById("tv");
 	var ctx = canvas.getContext("2d");
 
 	canvas.width = canvas.width;
