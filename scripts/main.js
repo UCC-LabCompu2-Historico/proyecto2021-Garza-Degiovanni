@@ -110,20 +110,20 @@ function calcular(){
 	let isOneError = variables(v1, x1, t1, units1, '1');
 	let isTwoError;
     if(isOneError == 'wrong'){
-    	// alert('WRONG IN COLUMN 1');
+    	//alert('WRONG IN COLUMN 1');
     	return;
     } else if (isOneError == 'missing'){
-    	// alert('MISSING IN COLUMN 1');
+    	alert('Por favor, rellene 2 casillas del movil 1');
     	return;
     }
 
 	if (boxVal == '2movil'){
 		isTwoError = variables(v2, x2, t2, units2, '2');
 		if(isTwoError == 'wrong'){
-    		// alert('WRONG IN COLUMN 2');
+    		//alert('WRONG IN COLUMN 2');
     		return;
     	} else if (isTwoError == 'missing'){
-    		// alert('MISSING IN COLUMN 2');
+    		alert('Por favor, rellene 2 casillas del movil 2');
     		return;
     	}
 	}
