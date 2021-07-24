@@ -27,6 +27,12 @@
     Empezar
 </div>
 
+<!--<p onload="setInterval(autoAnimado , 20)"></p>
+<canvas id="animadoCanvas" class="ejer" width="1000px" height="490px">
+    Tu navegador no soporta el tag de HTML5 canvas.
+</canvas>-->
+
+
 
 <div class="oculto moviles">
     <label for="cantidad">Ingrese la cantidad de moviles que tiene su problema</label>
@@ -122,9 +128,11 @@
         Calcular
     </div>
 
-    <button onclick="limpiarCanvas()">
+    <div class="oculto limpiar" id="limpiarC">
+        <button onclick="limpiarCanvas()">
         Borrar dibujo
-    </button>
+        </button>
+    </div>
 
     <div class="oculto image" id='automru'>
         <img src="imagen/automru.jpg" alt="auto desplazandose">

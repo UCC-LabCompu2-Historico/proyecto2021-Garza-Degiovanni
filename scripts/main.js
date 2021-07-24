@@ -514,3 +514,25 @@ function limpiarCanvas(){
 
 	canvas.width = canvas.width;
 }
+
+/*x = 0;
+dx = 2;
+function autoAnimado(){
+	var canvas = document.getElementById("animadoCanvas");
+	var ctx = canvas.getContext("2d");
+
+	canvas.width = canvas.width;
+
+	var img = new Image();
+	img.src = "images/autoAnimacion.jpg";
+
+	img.onload = function() {
+		ctx.drawImage(img,x,100);
+	}
+
+	if(x>canvas.width){
+		x = 0;
+	}
+	x += dx;
+
+}*/
