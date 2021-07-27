@@ -113,7 +113,7 @@ function calcular(){
 		t2 = hoursSecondsConverter(t2);
 	}
 
-	// Calculate stuff
+	// calculando
 	let isOneError = variables(v1, x1, t1, units1, '1');
 	let isTwoError;
     if(isOneError == 'wrong'){
@@ -152,7 +152,7 @@ function calcular(){
 		t: null,
 		x: null
 	}
-	// TRANSLATE Convert for graph
+	// TRANSLATE conversion para el grafico
 	if(modo == 'km/hs'){
 		//line 1
 		graphVar1.t = Number(document.getElementById('t1').value);
@@ -220,7 +220,7 @@ function calcular(){
  */
 
 function variables(v,x,t, units, whichProblem){
-	//What's missing
+	//que falta?
   if(v == '') {
     v = null;
   }else{
@@ -236,13 +236,13 @@ function variables(v,x,t, units, whichProblem){
   }else{
     t = Number(t);
   }
-  // TRANSLATE Checks what's null and what isn't
+  // TRANSLATE checkea que es nulo y que no
   if( (!v && !x) ||
       (!v && !t) ||
       (!x && !t)){
-    	// Two or more variables are missing;
+    	// dos o mas variables estan faltando;
     	return 'missing';
-    	// Throw error
+    	// tirar error
   } else if(!v){
     	v = x / t;
 
@@ -367,7 +367,7 @@ function swap(elem){
 
 
 
-// CANVAS STUFF
+// CANVAS
 
 
 var artist = document.getElementById('tv');
@@ -424,7 +424,6 @@ function drawLine(pos1, pos2, color = '#000000', lWidth = 2){
  parametro text: (string) valor - el texto a dibujar
  parametro fontSize: (number) valor - el valor en pixeles del tamaño de la fuente
  parametro color: (string) valor - el valor en pixeles del ancho de la linea (default 2)
-
  Valor que retorna: undefined
  */
 
@@ -459,15 +458,15 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 	drawLine({x: start.x, y: start.y}, {x: x, y: start.y});
 	drawLine({x: start.x, y: start.y}, {x: start.x, y: y});
 
-	// Line 1
+	// Linea 1
 	bigBoyY = start.y - (y + 30);
 	drawLine({x: start.x, y: start.y},
 		{x: (x1/xMax) * (x - start.x) + start.x, y: (1 - (y1/yMax)) * bigBoyY + (y + 30)}, '#000077', 2);
 
-	// Hashes and Cuts
+	// Marcas y cortes
 	for (let i = 1; i <= 5; i++){
 
-		// x hashes
+		// Marcas en X
 		hash = (x / 5) - 10;
 		xVal = xMax / 5;
 		drawLine({x: hash * i + start.x, y: start.y + 7}, {x: hash * i + start.x, y: start.y - 7});
@@ -475,16 +474,16 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 		drawText({x: hash * i - 10 + start.x, y: start.y + 25}, (xVal * i).toFixed(1), 15, '#000000');
 
 
-		// y hashes
+		// Marcas en Y
 		hash = start.y / 5 - 10;
 		yVal = yMax / 5;
 		drawLine({x: start.x - 7, y: hash * i}, {x: start.x + 7, y: hash * i});
 		//dibujar distancia
 
-		//TRANSLATE ERASE
-		//Find out if one of the units is Kilometers
-		//If it is convert any meters to Kilometers
-		//write thingies in km/hs and km and stuff
+		//TRANSLATE borrador
+		//buscar si una unidad es km
+		//si lo es, convertir los metros a km
+		//Escribir cosas en km/hs y en km
 		drawText({x: start.x - 40, y: hash * i + 5}, (yVal * (6 - i)).toFixed(1), 15, '#000000');
 
 	}
@@ -510,7 +509,7 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 
 	drawText({x: start.x - 30, y: (start.y / 5 - 10) * 6 + 5}, '0.0', 18, '#000000');
 
-	//Draw Line 2
+	//Dibuja linea 2
 	if (boxVal == '2movil'){
 		drawLine({x: start.x, y: start.y}, {x: (x2/xMax) * (x - start.x) + start.x, y: (1 - (y2/yMax)) * bigBoyY + (y + 30)}, '#007700', 2);
 
@@ -529,7 +528,11 @@ function limpiarCanvas(){
 	drawRectangle(0, 0, artist.width, artist.height, '#FFFFFF');
 }
 
-
+/**
+ Descripción: animacion del auto
+ Nombre de la función: autoAnimado
+ Valor que retorna: undefined
+ */
 //TODO: Add Description
 function autoAnimado(){
 	let boxVal = document.getElementById('cantidad').value;
@@ -556,19 +559,19 @@ function autoAnimado(){
 
 			limpiarCanvas();
 
-			//Draw Line showing start and end
+			//dibuja linea desde el inicio al final
 			drawLine({x:50, y:250},{x: artist.width - 50,y:250});
 			// Dibujar linea al final
 			drawLine({x:artist.width - 50, y:250},{x:artist.width - 50,y:30});
 			drawLine({x:artist.width - 50, y:30},{x:artist.width,y:30});
 
-			//Draw Hashes at start and end
+			//Dibuja marcas en el inicio y final
 			drawLine({x:50, y:250},{x:50, y:270});
 			drawLine({x:artist.width - 50, y:250},{x:artist.width - 50, y:270});
-			//Write Text of start and end point
+			//escribe texto en el punto inicial y en el punto final
 			drawText({x:50 - 10,y:295},"0" + document.getElementById('units-x1').value,18,'#000000');
 			drawText({x:artist.width - 50 - 20,y:295},document.getElementById('x1').value + document.getElementById('units-x1').value,18,'#000000');
-			//Write Text for variables
+			//escribe texto para las variables
 			drawText({x:x + 20,y:170}, document.getElementById('v1').value + document.getElementById('units-v1').value, 18, '#000000');
 
 			brush.drawImage(car, x, 150);
@@ -586,8 +589,8 @@ function autoAnimado(){
 		x1 = 0 - 50;
 		x2 = artist.width - 50;
 
-		//Crash Distance
-		//convert to same units
+		//distancia de choque
+		//convertir a mismas unidades
 		let car1Distance = Number(document.getElementById('x1').value);
 		let car2Distance = Number(document.getElementById('x2').value);
 		let car1Units = document.getElementById('units-x1').value;
@@ -622,7 +625,7 @@ function autoAnimado(){
 
 		let bigD = Math.max(car1Distance,car2Distance);
 
-		//Crash time
+		//tiempo de choque
 		let crashTime = bigD / (dx1 + dx2);
 		let crashDistance = Math.round(crashTime * dx1 * 100) / 100;
 		let crashPercentage = crashDistance/bigD;
@@ -645,20 +648,20 @@ function autoAnimado(){
 			x1 += (crashPercentage)*3;
 			x2 -= (1-crashPercentage)*3;
 
-			//Draw line showing start, end, and collision point (if two things)
+			//dibujar linea de comienzo, fin y choque (si es necesario)
 			limpiarCanvas();
 
-			//Draw Line showing start and end
+			//Dibuja linea mostrando inicio y final
 			drawLine({x:50, y:250},{x:artist.width - 50,y:250});
-			//Draw Hashes at start and end
+			//Dibuja marcas en el inicio y en el final
 			drawLine({x:50, y:250},{x:50, y:270});
 			drawLine({x:artist.width - 50, y:250},{x:artist.width - 50, y:270});
-			//Draw hash at crashpoint
+			//Dibuja marca en el punto de choque
 			drawLine(crashPos,{x:crashPos.x,y:crashPos.y+20});
-			//Write Text of start and end point
+			//escribe texto de punto inicial y final
 			drawText({x:50 - 10,y:295},"0" + document.getElementById('units-x1').value,18,'#000000');
 			drawText({x:artist.width - 50 - 20,y:295},bigD + bigDUnit,18,'#000000');
-			//Write Text for variables
+			//escribe texto para las variables
 			drawText({x:x1 + 20,y:170}, document.getElementById('v1').value + document.getElementById('units-v1').value, 18, '#000000');
 			drawText({x:x2 + 20,y:170}, document.getElementById('v2').value + document.getElementById('units-v2').value, 18, '#000000');
 
@@ -676,7 +679,11 @@ function pararAnimado(){
 	clearInterval(intervalID);
 	calcular();
 }
-
+/**
+ Descripción: borra el canvas
+ Nombre de la función: borrar()
+ Valor que retorna: ninguno
+ */
 function borrar(){
 	limpiarCanvas();
 	clearInterval(intervalID);
