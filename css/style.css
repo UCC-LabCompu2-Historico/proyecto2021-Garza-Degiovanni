@@ -116,6 +116,21 @@ footer {
     height: 400px;
 }
 
-.limpiar{
-    text-align:center;
+#animar{
+    margin-right: 5px;
+    float: right;
+}
+
+#parar-animacion{
+    margin-right: 5px;
+    float: right;
+}
+
+#limpiarC{
+    margin-left: 5px;
+    float: left;
+}
+
+.botones{
+    padding: 20px;
 }

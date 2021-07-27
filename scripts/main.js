@@ -4,21 +4,24 @@ window.addEventListener('load', function(){
 	document.getElementById('empezar').addEventListener('click', start);
 	document.getElementById('cantidad').addEventListener('change', movil);
 	document.getElementById('calcular').addEventListener('click', calcular);
+	document.getElementById('limpiarC').addEventListener('click', limpiarCanvas);
+	document.getElementById('animar').addEventListener('click', autoAnimado);
+	document.getElementById('parar-animacion').addEventListener('click', pararAnimado);
 
 	// Inicializando el menu al recargar la pagina
 	document.getElementById('cantidad').value = '1movil';
 
-	// TRANSLATE Get all unidad elements and attach switch function
+	// Get all unidad elements and attach switch function
 	let unidades = document.getElementsByClassName('unidad');
 	for(let i = 0; i < unidades.length; i++){
 		unidades[i].addEventListener('change', function(){
 			swap(unidades[i]);
 		})
 	}
+	let intervalID;
 })
 
-//Global Variables
-let boxVal = document.getElementById('cantidad').value;
+
 
 /** TRANSLATE
 	Show Form Inputs
@@ -28,8 +31,8 @@ let boxVal = document.getElementById('cantidad').value;
 function start(){
 	let elems = document.getElementsByClassName('oculto');
 
-	while (elems.length > 0){
-		elems[0].classList.remove('oculto')
+	while (elems.length > 1){
+		elems[0].classList.remove('oculto');
 	}
 
 	document.getElementById('empezar').classList.add('oculto');
@@ -41,6 +44,7 @@ function start(){
  */
 
 function movil(){
+
 	boxVal = document.getElementById('cantidad').value;
 
 	if (boxVal == '1movil'){
@@ -60,6 +64,7 @@ function movil(){
 function calcular(){
 
 	// Obtiene valores de inputs
+	let boxVal = document.getElementById('cantidad').value;
 
 	let v1 = document.getElementById('v1').value;
 	let x1 = document.getElementById('x1').value;
@@ -110,7 +115,7 @@ function calcular(){
 	let isOneError = variables(v1, x1, t1, units1, '1');
 	let isTwoError;
     if(isOneError == 'wrong'){
-    	//alert('WRONG IN COLUMN 1');
+    	alert('Error en los datos del movil 1, por favor chequee y rellene los valores de vuelta');
     	return;
     } else if (isOneError == 'missing'){
     	alert('Por favor, rellene 2 casillas del movil 1');
@@ -120,7 +125,7 @@ function calcular(){
 	if (boxVal == '2movil'){
 		isTwoError = variables(v2, x2, t2, units2, '2');
 		if(isTwoError == 'wrong'){
-    		//alert('WRONG IN COLUMN 2');
+    		alert('Error en los datos del movil 2, por favor chequee y rellene los valores de vuelta');
     		return;
     	} else if (isTwoError == 'missing'){
     		alert('Por favor, rellene 2 casillas del movil 2');
@@ -352,7 +357,7 @@ function swap(elem){
 
 
 
-// CANVAS STUFF TRANSLATE :themffYay:
+// CANVAS STUFF
 
 
 var artist = document.getElementById('tv');
@@ -436,6 +441,7 @@ function drawText(pos, text, fontSize, color){
 
 function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 
+	let boxVal = document.getElementById('cantidad').value;
 	let xMax = (x1 > x2 ? x1 : x2);
 	let yMax = (y1 > y2 ? y1 : y2);
 
@@ -509,30 +515,63 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
  */
 
 function limpiarCanvas(){
-	var canvas = document.getElementById("tv");
-	var ctx = canvas.getContext("2d");
-
-	canvas.width = canvas.width;
+	brush.clearRect(0, 0, artist.width, artist.height);
 }
 
-/*x = 0;
-dx = 2;
+
 function autoAnimado(){
-	var canvas = document.getElementById("animadoCanvas");
-	var ctx = canvas.getContext("2d");
 
-	canvas.width = canvas.width;
+	let boxVal = document.getElementById('cantidad').value;
+	
 
-	var img = new Image();
-	img.src = "images/autoAnimacion.jpg";
-
-	img.onload = function() {
-		ctx.drawImage(img,x,100);
-	}
-
-	if(x>canvas.width){
+	if (boxVal == '1movil'){
 		x = 0;
-	}
-	x += dx;
+		var img = new Image();
+		dx = Number(document.getElementById('v1').value);
 
-}*/
+		img.src = "images/autoAnimacion1.png";
+		intervalID = setInterval(function(){
+				if(x > artist.width - img.width){
+					x = 0;
+				}
+			x += dx;	
+			calcular();
+			brush.drawImage(img, x, 230);
+		}, 10);
+	}
+	else{
+
+		var img1 = new Image();
+		var img2 = new Image();
+
+		x1 = 0;
+		x2 = artist.width - img2.width;
+		img1.src = "images/autoAnimacion1.png";
+		img2.src = "images/autoAnimacion2.png";
+
+		dx1 = Number(document.getElementById('v1').value);
+		dx2 = Number(document.getElementById('v2').value);
+		intervalID = setInterval(function(){
+				if(x1 == x2 - img2.width){
+					x1 = 0;
+					x2 = artist.width - img2.width;
+				}
+			x1 += dx1;
+			x2 -= dx2;	
+			calcular();
+			brush.drawImage(img1, x1, 230);
+			brush.drawImage(img2, x2, 230);
+		}, 10);
+	}
+
+	document.getElementById('animar').classList.add('oculto');
+	document.getElementById('parar-animacion').classList.remove('oculto')
+}
+
+function pararAnimado(){
+
+	clearInterval(intervalID);
+	calcular();
+	document.getElementById('animar').classList.remove('oculto');
+	document.getElementById('parar-animacion').classList.add('oculto')
+}
