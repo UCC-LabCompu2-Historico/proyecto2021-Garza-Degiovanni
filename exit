@@ -1,0 +1,240 @@
+[33mcommit 048c234b6ebf9103d6c3c560cffe31c2e575ba3d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Tue Jul 27 12:03:16 2021 -0300
+
+    Mejorada la animacion
+
+[33mcommit 070d70d1bf533c2e7adc1ec40ce0aad28b08a84a[m
+Author: Leandro <80827721+LeandroGarza@users.noreply.github.com>
+Date:   Sat Jul 24 20:40:42 2021 -0300
+
+    se agrega animacion (todavia falta)
+
+[33mcommit 681186427a275380ec13063f6eb5e57085c6e935[m
+Author: Leandro <80827721+LeandroGarza@users.noreply.github.com>
+Date:   Sat Jul 24 20:40:09 2021 -0300
+
+    se centra boton limpiar
+
+[33mcommit 7de856744c2d24c200107870442caf11388c9046[m
+Author: Leandro <80827721+LeandroGarza@users.noreply.github.com>
+Date:   Sat Jul 24 20:07:14 2021 -0300
+
+    se agrega auto para animacion
+
+[33mcommit 70a159f331b78b588d52b68dabbd8dbad3e802c7[m
+Author: Leandro <80827721+LeandroGarza@users.noreply.github.com>
+Date:   Thu Jul 22 01:23:27 2021 -0300
+
+    ahora sale error cuando solo llenas 1 sola casilla
+
+[33mcommit a8a6072e9a2c541b67ef6259c879d4631d96a513[m
+Author: Leandro <80827721+LeandroGarza@users.noreply.github.com>
+Date:   Thu Jul 22 01:14:07 2021 -0300
+
+    ahora se redondea el resultado de las operaciones
+
+[33mcommit efb7373d5b23f433f8365a6a60ee1d4a958a4d46[m
+Author: Leandro <80827721+LeandroGarza@users.noreply.github.com>
+Date:   Thu Jul 22 00:52:41 2021 -0300
+
+    se agrega boton para limpiar canvas
+
+[33mcommit 2c50706fef0f18ecb75d9483431ab6ee07bc1bfa[m
+Author: LeandroGarza <leandrogarzap@gmail.com>
+Date:   Wed Jun 16 12:54:04 2021 -0300
+
+    pequena correccion en la documentacion
+
+[33mcommit 613e75f72bfcc19038263de3197462e7e1e6599e[m
+Merge: 5de2fcc 5d21055
+Author: LeandroGarza <leandrogarzap@gmail.com>
+Date:   Wed Jun 16 12:46:29 2021 -0300
+
+    Merge branch 'main' of https://github.com/UCC-LabCompu2/proyecto2021-Garza-Degiovanni
+
+[33mcommit 5de2fcc0cd8893bd1ba9faa20f35f8af0e8d8b65[m
+Author: LeandroGarza <leandrogarzap@gmail.com>
+Date:   Wed Jun 16 12:45:40 2021 -0300
+
+    ahora la grafica tiene el mismo color que la velocidad mostrada, asi se sabe a cual hacer referencia cada velocidad
+
+[33mcommit 5d2105580370ab4873f6a3b2fed1c834643f7116[m
+Author: LeandroGarza <80827721+LeandroGarza@users.noreply.github.com>
+Date:   Wed Jun 16 12:08:02 2021 -0300
+
+    actividades realizadas
+
+[33mcommit a143f14b6f4375f83c0c9c13fe65ba21df3cbb9a[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Wed Jun 16 08:29:42 2021 -0300
+
+    Changes
+
+[33mcommit f3431799165a048603bd0a3486af4fd3de1788d7[m
+Merge: 013109f 1a1080d
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Wed Jun 16 08:11:55 2021 -0300
+
+    Merge branch 'main' of https://github.com/UCC-LabCompu2/proyecto2021-Garza-Degiovanni into main
+
+[33mcommit 013109f16b1bbecfa8de8e1ade274c715ac115b5[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Wed Jun 16 08:11:38 2021 -0300
+
+    Changes
+
+[33mcommit 1a1080df1c4ddf79c500c1375b70df8c3ee10e88[m
+Merge: 7b9eaf1 9539fe0
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Wed Jun 16 08:10:41 2021 -0300
+
+    Merge branch 'main' of https://github.com/UCC-LabCompu2/proyecto2021-Garza-Degiovanni into main
+
+[33mcommit 7b9eaf17c38519d8757c6e172a93970ca44665cc[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Tue Jun 15 23:56:04 2021 -0300
+
+    Mejorado el script y la graficadora. Faltan algunos cambios
+
+[33mcommit 9539fe09b35215e811e5783edf1a0cb2d00f030e[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Tue Jun 15 23:54:43 2021 -0300
+
+    Update index.html
+
+[33mcommit 4a60397e90382d3c3fd7b525633d07523d69bfc5[m
+Author: LeandroGarza <leandrogarzap@gmail.com>
+Date:   Tue Jun 15 18:04:32 2021 -0300
+
+    avanzando
+
+[33mcommit 89cab8aaf9fd0126356b84a891930f52185efd59[m
+Author: LeandroGarza <leandrogarzap@gmail.com>
+Date:   Tue Jun 15 17:54:37 2021 -0300
+
+    avanzandooo
+
+[33mcommit 3df1a95fc60eebab94dc97cf2d84ce388e7319ca[m
+Author: LeandroGarza <leandrogarzap@gmail.com>
+Date:   Tue Jun 15 12:19:17 2021 -0300
+
+    avanzando
+
+[33mcommit 9be3f81fd0878c46eace248d5e9eee88c96e6b5a[m
+Author: LeandroGarza <leandrogarzap@gmail.com>
+Date:   Sat Jun 12 23:31:14 2021 -0300
+
+    se agrega mockup
+
+[33mcommit 6ec632091baa8e1527fe8d89d194aed88e7b7ef6[m
+Merge: a76c9c7 d78b662
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Thu May 13 04:48:54 2021 -0300
+
+    Merge branch 'main' of https://github.com/UCC-LabCompu2/proyecto2021-Garza-Degiovanni
+
+[33mcommit a76c9c7ef3f0f61ae9d3641a9d4e99614138306b[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Thu May 13 04:46:51 2021 -0300
+
+    Actualizado los puntos que estan en progreso
+
+[33mcommit 0ea316d50542abfd73a1509e628128b9b5c574a6[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Thu May 13 04:45:15 2021 -0300
+
+    Agregado el CSS del Canvas
+
+[33mcommit adbfdf991e970f7247da9b8461b8cbed8bcdc655[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Thu May 13 04:44:15 2021 -0300
+
+    Removida la opcion de poner el tiempo en minutos. Mejorada la legibilidad de las unidades
+
+[33mcommit bfc6a59f2637cb6f62bfabc126dc4ed992770e4a[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Thu May 13 04:42:39 2021 -0300
+
+    Agregue conversion de unidades y graficadora en el canvas. Muchos bugs a resolver
+
+[33mcommit d78b66205818f7a74b5950edd74843fad91529d0[m
+Author: jignaciodegiovanni <61927586+jignaciodegiovanni@users.noreply.github.com>
+Date:   Wed May 12 08:54:10 2021 -0300
+
+    Update README.md
+
+[33mcommit e9da50e5e73c69aa0043e648006a91e67b00524d[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Tue May 11 03:26:29 2021 -0300
+
+    Actualizado el footer de la pagina
+
+[33mcommit 8dd36da638241e94ec69cd589700faf4880b3030[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Tue May 11 03:25:31 2021 -0300
+
+    test
+
+[33mcommit 5029b05b36c818583d325748e09ef41c3b332a08[m
+Author: jignaciodegiovanni <61927586+jignaciodegiovanni@users.noreply.github.com>
+Date:   Tue May 11 03:18:46 2021 -0300
+
+    Update README.md
+
+[33mcommit e0729892c0678f9e2dda062fcd3e71c9c9191e1c[m
+Merge: 9422eaa 3e78e9a
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Tue May 11 03:14:29 2021 -0300
+
+    Merge branch 'main' of https://github.com/UCC-LabCompu2/proyecto2021-Garza-Degiovanni
+
+[33mcommit 9422eaa84afc426717edeb374bc9636b4146ffc7[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Tue May 11 03:14:06 2021 -0300
+
+    Se agrego hipervinculo a la pagina del footer
+
+[33mcommit 3e78e9a88b69fa9fafa74aed07a602c4cd36777f[m
+Author: jignaciodegiovanni <61927586+jignaciodegiovanni@users.noreply.github.com>
+Date:   Tue May 11 03:10:32 2021 -0300
+
+    Mejora de formato del README.md
+
+[33mcommit 8b631b662288b21119fa200a780389c7a97f65e3[m
+Author: jignaciodegiovanni <61927586+jignaciodegiovanni@users.noreply.github.com>
+Date:   Tue May 11 03:09:55 2021 -0300
+
+    Agregado el link a la pagina
+
+[33mcommit 6e1cfe1d05b6d8d4d741ccb2d5163767d9a9bcdd[m
+Author: jignaciodegiovanni <61927586+jignaciodegiovanni@users.noreply.github.com>
+Date:   Tue May 11 03:09:06 2021 -0300
+
+    Delete CNAME
+
+[33mcommit 216416086c089eeb89a0ee9ab50043016b8a4faa[m
+Author: jignaciodegiovanni <61927586+jignaciodegiovanni@users.noreply.github.com>
+Date:   Tue May 11 03:08:08 2021 -0300
+
+    Create CNAME
+
+[33mcommit aaed320d866fb38493eb9d9fd7617052ae481a1d[m
+Author: jignaciodegiovanni <61927586+jignaciodegiovanni@users.noreply.github.com>
+Date:   Tue May 11 03:07:55 2021 -0300
+
+    Delete CNAME
+
+[33mcommit 8e4e16689f0525344ec0d65434b5933378e06001[m
+Author: jignaciodegiovanni <61927586+jignaciodegiovanni@users.noreply.github.com>
+Date:   Tue May 11 03:07:19 2021 -0300
+
+    Create CNAME
+
+[33mcommit 1dae3e074f3b64c768770e64bb59979fa7154f69[m
+Author: jignaciodegiovanni <jignaciodegiovanni@gmail.com>
+Date:   Tue May 11 02:59:31 2021 -0300
+
+    Agregada informacion de la pagina. Actualizado los puntos que estan realizados
+
+[33mcommit 87ac36
