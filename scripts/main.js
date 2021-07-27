@@ -4,7 +4,7 @@ window.addEventListener('load', function(){
 	document.getElementById('empezar').addEventListener('click', start);
 	document.getElementById('cantidad').addEventListener('change', movil);
 	document.getElementById('calcular').addEventListener('click', calcular);
-	document.getElementById('limpiarC').addEventListener('click', limpiarCanvas);
+	document.getElementById('limpiarC').addEventListener('click', borrar);
 	document.getElementById('animar').addEventListener('click', autoAnimado);
 	document.getElementById('parar-animacion').addEventListener('click', pararAnimado);
 
@@ -21,8 +21,6 @@ window.addEventListener('load', function(){
 	let intervalID;
 })
 
-
-
 /** TRANSLATE
 	Show Form Inputs
 	Nombre de la función: start
@@ -31,7 +29,7 @@ window.addEventListener('load', function(){
 function start(){
 	let elems = document.getElementsByClassName('oculto');
 
-	while (elems.length > 1){
+	while (elems.length > 3){
 		elems[0].classList.remove('oculto');
 	}
 
@@ -49,6 +47,10 @@ function movil(){
 
 	if (boxVal == '1movil'){
 		document.getElementsByClassName('columna2')[0].classList.add('columna2-oculto');
+		document.getElementById('x2').value = '';
+		document.getElementById('t2').value = '';
+		document.getElementById('v2').value = '';
+		document.getElementById('units-v2').value = 'm/s';
 	}
 
 	else{
@@ -201,6 +203,11 @@ function calcular(){
 		graphVar2.t,
 		graphVar2.x,
 		modo);
+	document.getElementById('limpiarC').classList.remove('oculto');
+	document.getElementById('animar').classList.remove('oculto');
+	document.getElementById('parar-animacion').classList.add('oculto');
+	clearInterval(intervalID);
+
 }
 
 /**
@@ -266,11 +273,14 @@ function variables(v,x,t, units, whichProblem){
     	}
     	document.getElementById('t'+whichProblem).value = Math.round(t*100)/100;
   }
-  else {
-  	if (v * t != x){
-  		console.log('wrong!');
-  		return 'wrong';
+  else if (document.getElementById('t'+whichProblem).value != Math.round((x/v)*100/100)){
+			t = x / v;
+
+		if (document.getElementById('units-t' + whichProblem).value == 'h'){
+    		t = hoursSecondsConverter(t, 's');
   	}
+    	document.getElementById('t'+whichProblem).value = Math.round(t*100)/100;
+			//alert('Hubo un error en el calculo, modificamos el tiempo para que el calculo sea el correcto, chequea los valores de vuelta');
   }
   return 'correct';
 }
@@ -333,22 +343,22 @@ function swap(elem){
 
 	switch(elem.value){
 		case 'km/hs':
-			elemUnidad.value = mpsKphConverter(elemUnidad.value, 'm/s');
+			elemUnidad.value = Math.round(mpsKphConverter(elemUnidad.value, 'm/s') * 100)/100;
 			break;
 		case 'm/s':
-			elemUnidad.value = mpsKphConverter(elemUnidad.value, 'km/hs');
+			elemUnidad.value = Math.round(mpsKphConverter(elemUnidad.value, 'km/hs')*100)/100;
 			break;
 		case 'km':
-			elemUnidad.value = meterKilometerConverter(elemUnidad.value, 'm');
+			elemUnidad.value = Math.round(meterKilometerConverter(elemUnidad.value, 'm') * 100)/100;
 			break;
 		case 'm':
-			elemUnidad.value = meterKilometerConverter(elemUnidad.value, 'km');
+			elemUnidad.value = Math.round(meterKilometerConverter(elemUnidad.value, 'km') * 100)/100;
 			break;
 		case 'h':
-			elemUnidad.value = hoursSecondsConverter(elemUnidad.value, 's');
+			elemUnidad.value = Math.round(hoursSecondsConverter(elemUnidad.value, 's') * 100)/100;
 			break;
 		case 's':
-			elemUnidad.value = hoursSecondsConverter(elemUnidad.value, 'h');
+			elemUnidad.value = Math.round(hoursSecondsConverter(elemUnidad.value, 'h') * 100)/100;
 			break;
 		default:
 			console.log('Problema en Swap');
@@ -373,7 +383,7 @@ var brush = artist.getContext('2d');
  parametro y: (number) valor - el valor en pixeles de la posicion de inicio de y
  parametro width: (number) valor - el valor en pixeles del ancho
  parametro height: (number) valor - el valor en pixeles de la altura
- parametro color: (string) valor - string del color en hexadecimal 
+ parametro color: (string) valor - string del color en hexadecimal
 
  Valor que retorna: undefined
  */
@@ -414,7 +424,7 @@ function drawLine(pos1, pos2, color = '#000000', lWidth = 2){
  parametro text: (string) valor - el texto a dibujar
  parametro fontSize: (number) valor - el valor en pixeles del tamaño de la fuente
  parametro color: (string) valor - el valor en pixeles del ancho de la linea (default 2)
- 
+
  Valor que retorna: undefined
  */
 
@@ -435,7 +445,7 @@ function drawText(pos, text, fontSize, color){
  parametro x2: (number) valor - valor del tiempo del movil 1
  parametro y2: (number) valor - valor de la distancia del movil 1
  parametro modo: (string) valor - el modo del grafico (m/s or km/hs)
- 
+
  Valor que retorna: undefined
  */
 
@@ -452,7 +462,7 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 	// Line 1
 	bigBoyY = start.y - (y + 30);
 	drawLine({x: start.x, y: start.y},
-		{x: (x1/xMax) * (x - start.x), y: (1 - (y1/yMax)) * bigBoyY + (y + 30)}, '#000077', 2);
+		{x: (x1/xMax) * (x - start.x) + start.x, y: (1 - (y1/yMax)) * bigBoyY + (y + 30)}, '#000077', 2);
 
 	// Hashes and Cuts
 	for (let i = 1; i <= 5; i++){
@@ -460,9 +470,9 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 		// x hashes
 		hash = (x / 5) - 10;
 		xVal = xMax / 5;
-		drawLine({x: hash * i, y: start.y + 7}, {x: hash * i, y: start.y - 7});
+		drawLine({x: hash * i + start.x, y: start.y + 7}, {x: hash * i + start.x, y: start.y - 7});
 		//dibujar tiempo
-		drawText({x: hash * i - 10, y: start.y + 25}, (xVal * i).toFixed(1), 15, '#000000');
+		drawText({x: hash * i - 10 + start.x, y: start.y + 25}, (xVal * i).toFixed(1), 15, '#000000');
 
 
 		// y hashes
@@ -486,8 +496,8 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 	);
 
 	drawText(
-		{x: artist.width - 70, y: artist.height - y},
-		'Time (' + document.getElementById('units-t1').value + ')',
+		{x: artist.width - 70, y: artist.height - y - 50},
+		'Time (' + document.getElementById('units-v1').value.split('/')[1] + ')',
 		15, '#000'
 	);
 
@@ -500,8 +510,9 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 
 	drawText({x: start.x - 30, y: (start.y / 5 - 10) * 6 + 5}, '0.0', 18, '#000000');
 
+	//Draw Line 2
 	if (boxVal == '2movil'){
-		drawLine({x: start.x, y: start.y}, {x: (x2/xMax) * (x - start.x), y: (1 - (y2/yMax)) * bigBoyY + (y + 30)}, '#007700', 2);
+		drawLine({x: start.x, y: start.y}, {x: (x2/xMax) * (x - start.x) + start.x, y: (1 - (y2/yMax)) * bigBoyY + (y + 30)}, '#007700', 2);
 
 		drawText({x: artist.width - 125, y: y + 15}, 'v2 = ' + Number(document.getElementById('v2').value).toFixed(2) + ' ' + document.getElementById('units-v2').value , 15, '#007700');
 
@@ -515,63 +526,160 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
  */
 
 function limpiarCanvas(){
-	brush.clearRect(0, 0, artist.width, artist.height);
+	drawRectangle(0, 0, artist.width, artist.height, '#FFFFFF');
 }
 
 
+//TODO: Add Description
 function autoAnimado(){
-
 	let boxVal = document.getElementById('cantidad').value;
-	
+	let crash = new Image();
+	crash.src = "images/crash.png";
+
+	limpiarCanvas();
 
 	if (boxVal == '1movil'){
 		x = 0;
-		var img = new Image();
-		dx = Number(document.getElementById('v1').value);
+		var car = new Image();
+		dx = Math.min(Math.max(1/Number(document.getElementById('t1').value),2),6) ;
 
-		img.src = "images/autoAnimacion1.png";
+		car.src = "images/autoAnimacion1.png";
 		intervalID = setInterval(function(){
-				if(x > artist.width - img.width){
-					x = 0;
+				if(x >= artist.width - 150){
+					brush.drawImage(crash, artist.width - 110, 150, 100, 100);
+					drawText({x:x1 + 100 - 25,y:388},Math.round(Number(document.getElementById('t1').value)*100)/100+bigDxUnits.split('/')[1],18,"#000000");
+					dx = 0;
+					clearInterval(intervalID);
+          return;
 				}
-			x += dx;	
-			calcular();
-			brush.drawImage(img, x, 230);
-		}, 10);
+			x += dx;
+
+			limpiarCanvas();
+
+			//Draw Line showing start and end
+			drawLine({x:50, y:250},{x: artist.width - 50,y:250});
+			// Dibujar linea al final
+			drawLine({x:artist.width - 50, y:250},{x:artist.width - 50,y:30});
+			drawLine({x:artist.width - 50, y:30},{x:artist.width,y:30});
+
+			//Draw Hashes at start and end
+			drawLine({x:50, y:250},{x:50, y:270});
+			drawLine({x:artist.width - 50, y:250},{x:artist.width - 50, y:270});
+			//Write Text of start and end point
+			drawText({x:50 - 10,y:295},"0" + document.getElementById('units-x1').value,18,'#000000');
+			drawText({x:artist.width - 50 - 20,y:295},document.getElementById('x1').value + document.getElementById('units-x1').value,18,'#000000');
+			//Write Text for variables
+			drawText({x:x + 20,y:170}, document.getElementById('v1').value + document.getElementById('units-v1').value, 18, '#000000');
+
+			brush.drawImage(car, x, 150);
+		}, 16);
 	}
 	else{
 
-		var img1 = new Image();
-		var img2 = new Image();
+		let car1 = new Image();
+		let car2 = new Image();
+		
+		car1.src = "images/autoAnimacion1.png";
+		car2.src = "images/autoAnimacion2.png";
+		
 
-		x1 = 0;
-		x2 = artist.width - img2.width;
-		img1.src = "images/autoAnimacion1.png";
-		img2.src = "images/autoAnimacion2.png";
+		x1 = 0 - 50;
+		x2 = artist.width - 50;
+
+		//Crash Distance
+		//convert to same units
+		let car1Distance = Number(document.getElementById('x1').value);
+		let car2Distance = Number(document.getElementById('x2').value);
+		let car1Units = document.getElementById('units-x1').value;
+		let car2Units = document.getElementById('units-x2').value;
+		let bigDUnit = "km";
+
+		if(car1Units != car2Units){
+			if(car1Units == "m"){
+				car1Distance = meterKilometerConverter(car1Distance,"m");
+			}else{
+				car2Distance = meterKilometerConverter(car2Distance,"m");
+			}
+		}else if(car1Units == "m"){
+			bigDUnit = "m";
+		}
 
 		dx1 = Number(document.getElementById('v1').value);
 		dx2 = Number(document.getElementById('v2').value);
+		let dx1Units = document.getElementById('units-v1').value;
+		let dx2Units = document.getElementById('units-v2').value;
+		let bigDxUnits = "m/s";
+
+		if(dx1Units != dx2Units){
+			if(dx1Units == "km/hs"){
+				dx2 = mpsKphConverter(dx2, "m/s");
+			}else{
+				dx1 = mpsKphConverter(dx1, "m/s");
+			}
+		}else if(dx1Units == "km/hs"){
+			bigDxUnits = "km/hs";
+		}
+
+		let bigD = Math.max(car1Distance,car2Distance);
+
+		//Crash time
+		let crashTime = bigD / (dx1 + dx2);
+		let crashDistance = Math.round(crashTime * dx1 * 100) / 100;
+		let crashPercentage = crashDistance/bigD;
+		let crashPos = {
+			x:(artist.width - 100)*crashPercentage + (50),
+			y:250
+		}
+
+
 		intervalID = setInterval(function(){
-				if(x1 == x2 - img2.width){
-					x1 = 0;
-					x2 = artist.width - img2.width;
+				if(x1 >= x2 - 100){
+					brush.drawImage(crash, x1 + 100 - 50, 260, 100, 100);
+					drawText({x:x1 + 100 - 25,y:370},crashDistance+bigDUnit,18,"#000000");
+					drawText({x:x1 + 100 - 25,y:388},Math.round(crashTime*100)/100+bigDxUnits.split('/')[1],18,"#000000");
+          dx1 = 0;
+					dx2 = 0;
+					clearInterval(intervalID);
+          return;
 				}
-			x1 += dx1;
-			x2 -= dx2;	
-			calcular();
-			brush.drawImage(img1, x1, 230);
-			brush.drawImage(img2, x2, 230);
-		}, 10);
+			x1 += (crashPercentage)*3;
+			x2 -= (1-crashPercentage)*3;
+
+			//Draw line showing start, end, and collision point (if two things)
+			limpiarCanvas();
+
+			//Draw Line showing start and end
+			drawLine({x:50, y:250},{x:artist.width - 50,y:250});
+			//Draw Hashes at start and end
+			drawLine({x:50, y:250},{x:50, y:270});
+			drawLine({x:artist.width - 50, y:250},{x:artist.width - 50, y:270});
+			//Draw hash at crashpoint
+			drawLine(crashPos,{x:crashPos.x,y:crashPos.y+20});
+			//Write Text of start and end point
+			drawText({x:50 - 10,y:295},"0" + document.getElementById('units-x1').value,18,'#000000');
+			drawText({x:artist.width - 50 - 20,y:295},bigD + bigDUnit,18,'#000000');
+			//Write Text for variables
+			drawText({x:x1 + 20,y:170}, document.getElementById('v1').value + document.getElementById('units-v1').value, 18, '#000000');
+			drawText({x:x2 + 20,y:170}, document.getElementById('v2').value + document.getElementById('units-v2').value, 18, '#000000');
+
+			brush.drawImage(car1, x1, 150);
+			brush.drawImage(car2, x2, 150);
+		}, 16);
 	}
 
 	document.getElementById('animar').classList.add('oculto');
 	document.getElementById('parar-animacion').classList.remove('oculto')
 }
 
+//TODO: Add Description
 function pararAnimado(){
-
 	clearInterval(intervalID);
 	calcular();
+}
+
+function borrar(){
+	limpiarCanvas();
+	clearInterval(intervalID);
+	document.getElementById('parar-animacion').classList.add('oculto');
 	document.getElementById('animar').classList.remove('oculto');
-	document.getElementById('parar-animacion').classList.add('oculto')
 }
