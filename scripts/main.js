@@ -4,7 +4,7 @@ window.addEventListener('load', function(){
 	document.getElementById('empezar').addEventListener('click', start);
 	document.getElementById('cantidad').addEventListener('change', movil);
 	document.getElementById('calcular').addEventListener('click', calcular);
-	document.getElementById('limpiarC').addEventListener('click', limpiarCanvas);
+	document.getElementById('limpiarC').addEventListener('click', borrar);
 	document.getElementById('animar').addEventListener('click', autoAnimado);
 	document.getElementById('parar-animacion').addEventListener('click', pararAnimado);
 
@@ -20,8 +20,6 @@ window.addEventListener('load', function(){
 	}
 	let intervalID;
 })
-
-
 
 /** TRANSLATE
 	Show Form Inputs
@@ -207,6 +205,9 @@ function calcular(){
 		modo);
 	document.getElementById('limpiarC').classList.remove('oculto');
 	document.getElementById('animar').classList.remove('oculto');
+	document.getElementById('parar-animacion').classList.add('oculto');
+	clearInterval(intervalID);
+
 }
 
 /**
@@ -534,7 +535,7 @@ function autoAnimado(){
 	let boxVal = document.getElementById('cantidad').value;
 	let crash = new Image();
 	crash.src = "images/crash.png";
-	
+
 	limpiarCanvas();
 
 	if (boxVal == '1movil'){
@@ -674,6 +675,11 @@ function autoAnimado(){
 function pararAnimado(){
 	clearInterval(intervalID);
 	calcular();
+}
+
+function borrar(){
+	limpiarCanvas();
+	clearInterval(intervalID);
+	document.getElementById('parar-animacion').classList.add('oculto');
 	document.getElementById('animar').classList.remove('oculto');
-	document.getElementById('parar-animacion').classList.add('oculto')
 }
