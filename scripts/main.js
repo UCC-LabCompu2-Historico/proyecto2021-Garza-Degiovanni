@@ -21,8 +21,8 @@ window.addEventListener('load', function(){
 	let intervalID;
 })
 
-/** TRANSLATE
-	Show Form Inputs
+/** 
+	Muestra la pagina, oculta el boton de empezar
 	Nombre de la función: start
 	valor que retorna: undefined
 */
@@ -152,7 +152,7 @@ function calcular(){
 		t: null,
 		x: null
 	}
-	// TRANSLATE conversion para el grafico
+	// conversion para el grafico
 	if(modo == 'km/hs'){
 		//line 1
 		graphVar1.t = Number(document.getElementById('t1').value);
@@ -236,7 +236,7 @@ function variables(v,x,t, units, whichProblem){
   }else{
     t = Number(t);
   }
-  // TRANSLATE checkea que es nulo y que no
+  // chequea que es nulo y que no
   if( (!v && !x) ||
       (!v && !t) ||
       (!x && !t)){
@@ -479,11 +479,6 @@ function drawGraph(start, x, y, x1, y1, x2 = 0, y2 = 0, modo){
 		yVal = yMax / 5;
 		drawLine({x: start.x - 7, y: hash * i}, {x: start.x + 7, y: hash * i});
 		//dibujar distancia
-
-		//TRANSLATE borrador
-		//buscar si una unidad es km
-		//si lo es, convertir los metros a km
-		//Escribir cosas en km/hs y en km
 		drawText({x: start.x - 40, y: hash * i + 5}, (yVal * (6 - i)).toFixed(1), 15, '#000000');
 
 	}
@@ -533,7 +528,7 @@ function limpiarCanvas(){
  Nombre de la función: autoAnimado
  Valor que retorna: undefined
  */
-//TODO: Add Description
+
 function autoAnimado(){
 	let boxVal = document.getElementById('cantidad').value;
 	let crash = new Image();
@@ -674,7 +669,12 @@ function autoAnimado(){
 	document.getElementById('parar-animacion').classList.remove('oculto')
 }
 
-//TODO: Add Description
+/**
+ Descripción: para la animacion y muestra el grafico
+ Nombre de la función: pararAnimado()
+ Valor que retorna: ninguno
+ */
+
 function pararAnimado(){
 	clearInterval(intervalID);
 	calcular();
